@@ -43,8 +43,9 @@ object MVI {
         context: Context,
         viewModelConfigFactory: MVIViewModelConfigFactory? = null,
         viewModelDelegateFactory: ViewModelDelegateFactory? = null
-    ) {
+    ):MVI {
         initialize(context.isDebuggable(), viewModelConfigFactory, viewModelDelegateFactory)
+        return this
     }
 
     /**

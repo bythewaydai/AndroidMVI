@@ -58,7 +58,6 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
 
-
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     // SavedStateHandle
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1"
@@ -72,4 +71,6 @@ dependencies {
     implementation "androidx.fragment:fragment:1.3.4"
     // kotlinx.coroutines.channels.Channel使用
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+
+    implementation("androidx.startup:startup-runtime:1.1.1")
 }
