@@ -3,6 +3,26 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+
+//tasks.withType(KotlinCompile).all {
+//    kotlinOptions {
+//        freeCompilerArgs += [
+//                '-Xopt-in=kotlin.RequiresOptIn',
+//                '-Xopt-in=com.airbnb.mvrx.InternalMavericksApi',
+//        ]
+//    }
+//}
+
+// 为了@RequiresOptIn的使用，需要在kotlinOptions中添加freeCompilerArgs
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-Xopt-in=kotlin.RequiresOptIn',
+                '-Xopt-in=com.dl.mvilib.InternalMavericksApi',
+        ]
+    }
+}
+
 android {
     compileSdk 32
 
@@ -37,4 +57,19 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
     implementation 'androidx.core:core-ktx:1.7.0'
+
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    // SavedStateHandle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1"
+    // Lifecycle KTX 为每个 Lifecycle 对象定义一个 LifecycleScope。在此范围内启动的协程会在 Lifecycle 被销毁时取消
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    // DefaultLifecycleObserver用
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.3.1"
+    // androidx.activity.ComponentActivity
+    implementation "androidx.activity:activity:1.2.3"
+    // fragment.savedStateRegistry
+    implementation "androidx.fragment:fragment:1.3.4"
+    // kotlinx.coroutines.channels.Channel使用
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
 }

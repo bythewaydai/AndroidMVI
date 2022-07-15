@@ -40,5 +40,19 @@ class FirstFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
+        test {
+            var result=this.output()
+            println("test")
+            println("restul:$result")
+        }
+    }
+
+    fun test(para:MainActivity.()->Unit) {
+        MainActivity().apply {
+            para()
+        }
+        para(MainActivity())
+//        println("test")
     }
 }
