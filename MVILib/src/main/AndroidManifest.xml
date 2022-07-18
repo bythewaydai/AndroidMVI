@@ -3,13 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dl.mvilib">
 
-    <provider
-        android:name="androidx.startup.InitializationProvider"
-        android:authorities="${applicationId}.androidx-startup"
-        android:exported="false"
-        tools:node="merge">
-        <meta-data
-            android:name="com.dl.mvilib.MVIInitializer"
-            android:value="androidx.startup" />
-    </provider>
+    <application >
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="com.dl.mvilib.MVIInitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
+
 </manifest>
