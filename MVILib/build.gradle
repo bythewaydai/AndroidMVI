@@ -51,26 +51,26 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'androidx.core:core-ktx:1.7.0'
 
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     // SavedStateHandle
-    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.1'
     // Lifecycle KTX 为每个 Lifecycle 对象定义一个 LifecycleScope。在此范围内启动的协程会在 Lifecycle 被销毁时取消
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.0-rc02'
     // DefaultLifecycleObserver用
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.3.1"
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.4.1'
     // androidx.activity.ComponentActivity
-    implementation "androidx.activity:activity:1.2.3"
+    implementation 'androidx.activity:activity:1.2.4'
     // fragment.savedStateRegistry
-    implementation "androidx.fragment:fragment:1.3.4"
+    implementation 'androidx.fragment:fragment:1.4.1'
     // kotlinx.coroutines.channels.Channel使用
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
 
     implementation("androidx.startup:startup-runtime:1.1.1")
 }
