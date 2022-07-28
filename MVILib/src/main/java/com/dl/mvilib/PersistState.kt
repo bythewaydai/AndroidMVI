@@ -28,7 +28,7 @@ annotation class PersistState
  * Iterates through all member properties annotated with [PersistState] and parcels them into a bundle that can be
  * saved with savedInstanceState.
  */
-fun <T : BaseUIState> persistMavericksState(state: T, validation: Boolean = false): Bundle {
+fun <T : MVIState> persistMavericksState(state: T, validation: Boolean = false): Bundle {
     val jvmClass = state::class.java
     // Find the first constructor that has parameters annotated with @PersistState or return.
     val constructor = jvmClass.primaryConstructor() ?: return Bundle()
@@ -49,7 +49,7 @@ fun <T : BaseUIState> persistMavericksState(state: T, validation: Boolean = fals
     return bundle
 }
 
-private fun <T : BaseUIState> Class<out T>.primaryConstructor(): Constructor<*>? {
+private fun <T : MVIState> Class<out T>.primaryConstructor(): Constructor<*>? {
     // Assumes that only the primary constructor has PersistState annotations.
     // TODO - potentially throw if multiple constructors have PersistState as that is not supported.
     return constructors.firstOrNull { constructor ->
@@ -59,7 +59,7 @@ private fun <T : BaseUIState> Class<out T>.primaryConstructor(): Constructor<*>?
     }
 }
 
-private fun <T : BaseUIState> Class<out T>.getComponentNFunction(componentIndex: Int): Method {
+private fun <T : MVIState> Class<out T>.getComponentNFunction(componentIndex: Int): Method {
     val functionName = "component${componentIndex + 1}"
     return try {
         getDeclaredMethod(functionName)
@@ -104,7 +104,7 @@ private fun <T : Any?> Bundle.putAny(key: String?, value: T): Bundle {
 /**
  * Updates the initial state object given state persisted with [PersistState] in a [Bundle].
  */
-fun <T : BaseUIState> restorePersistedMavericksState(
+fun <T : MVIState> restorePersistedMavericksState(
     bundle: Bundle,
     initialState: T,
     validation: Boolean = false

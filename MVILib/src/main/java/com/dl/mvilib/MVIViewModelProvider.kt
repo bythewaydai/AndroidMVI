@@ -28,7 +28,7 @@ object MavericksViewModelProvider {
      * @param initialStateFactory A way to specify how to create the initial state, can be mocked out for testing.
      *
      */
-    fun <VM : BaseViewModel<S>, S : BaseUIState> get(
+    fun <VM : MVIViewModel<S>, S : MVIState> get(
         viewModelClass: Class<out VM>,
         stateClass: Class<out S>,
         viewModelContext: ViewModelContext,
@@ -82,7 +82,7 @@ object MavericksViewModelProvider {
         return viewModel.viewModel
     }
 
-    private fun <VM : BaseViewModel<S>, S : BaseUIState> VM.getSavedStateBundle(
+    private fun <VM : MVIViewModel<S>, S : MVIState> VM.getSavedStateBundle(
         initialArgs: Any?,
         originalDeclarationViewModelClass: Class<out VM>,
         originalDeclarationStateClass: Class<out S>
@@ -107,7 +107,7 @@ object MavericksViewModelProvider {
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun <VM : BaseViewModel<S>, S : BaseUIState> Bundle.toStateRestorer(
+    private fun <VM : MVIViewModel<S>, S : MVIState> Bundle.toStateRestorer(
         viewModelContext: ViewModelContext
     ): StateRestorer<VM, S> {
         val restoredArgs = get(KEY_MVRX_SAVED_ARGS)
@@ -137,7 +137,7 @@ object MavericksViewModelProvider {
 /**
  * Return the [Class] of the companion [MavericksViewModelFactory] for a given ViewModel class, if it exists.
  */
-internal fun <VM : BaseViewModel<*>> Class<VM>.factoryCompanion(): Class<out MavericksViewModelFactory<VM, *>>? {
+internal fun <VM : MVIViewModel<*>> Class<VM>.factoryCompanion(): Class<out MavericksViewModelFactory<VM, *>>? {
     return declaredClasses.firstOrNull {
         MavericksViewModelFactory::class.java.isAssignableFrom(it)
     }?.let { klass ->
@@ -157,7 +157,7 @@ internal fun Class<*>.instance(): Any {
 internal const val ACCESSED_BEFORE_ON_CREATE_ERR_MSG =
     "You can only access a view model after super.onCreate of your activity/fragment has been called."
 
-data class StateRestorer<VM : BaseViewModel<S>, S : BaseUIState>(
+data class StateRestorer<VM : MVIViewModel<S>, S : MVIState>(
     val viewModelContext: ViewModelContext,
     val viewModelClass: Class<out VM>,
     val stateClass: Class<out S>,

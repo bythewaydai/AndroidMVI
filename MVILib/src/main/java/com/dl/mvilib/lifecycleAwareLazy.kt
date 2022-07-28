@@ -13,6 +13,7 @@ private object UninitializedValue
 
 /**
  * This was copied from SynchronizedLazyImpl but modified to automatically initialize in ON_CREATE.
+ * 主要作用：感知owner的生命周期，在started时初始化initializer
  */
 @InternalMavericksApi
 @SuppressWarnings("Detekt.ClassNaming")

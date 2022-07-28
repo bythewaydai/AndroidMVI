@@ -8,14 +8,14 @@ import kotlinx.coroutines.flow.map
 import kotlin.reflect.KProperty1
 
 @InternalMavericksApi
-fun <VM : BaseViewModel<S>, S : BaseUIState> VM._internal(
+fun <VM : MVIViewModel<S>, S : MVIState> VM._internal(
     owner: LifecycleOwner?,
     deliveryMode: DeliveryMode = RedeliverOnStart,
     action: suspend (S) -> Unit
 ) = stateFlow.resolveSubscription(owner, deliveryMode, action)
 
 @InternalMavericksApi
-fun <VM : BaseViewModel<S>, S : BaseUIState, A> VM._internal1(
+fun <VM : MVIViewModel<S>, S : MVIState, A> VM._internal1(
     owner: LifecycleOwner?,
     prop1: KProperty1<S, A>,
     deliveryMode: DeliveryMode = RedeliverOnStart,
@@ -28,7 +28,7 @@ fun <VM : BaseViewModel<S>, S : BaseUIState, A> VM._internal1(
     }
 
 @InternalMavericksApi
-fun <VM : BaseViewModel<S>, S : BaseUIState, A, B> VM._internal2(
+fun <VM : MVIViewModel<S>, S : MVIState, A, B> VM._internal2(
     owner: LifecycleOwner?,
     prop1: KProperty1<S, A>,
     prop2: KProperty1<S, B>,
@@ -42,7 +42,7 @@ fun <VM : BaseViewModel<S>, S : BaseUIState, A, B> VM._internal2(
     }
 
 @InternalMavericksApi
-fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C> VM._internal3(
+fun <VM : MVIViewModel<S>, S : MVIState, A, B, C> VM._internal3(
     owner: LifecycleOwner?,
     prop1: KProperty1<S, A>,
     prop2: KProperty1<S, B>,
@@ -57,7 +57,7 @@ fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C> VM._internal3(
     }
 
 @InternalMavericksApi
-fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C, D> VM._internal4(
+fun <VM : MVIViewModel<S>, S : MVIState, A, B, C, D> VM._internal4(
     owner: LifecycleOwner?,
     prop1: KProperty1<S, A>,
     prop2: KProperty1<S, B>,
@@ -73,7 +73,7 @@ fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C, D> VM._internal4(
     }
 
 @InternalMavericksApi
-fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C, D, E> VM._internal5(
+fun <VM : MVIViewModel<S>, S : MVIState, A, B, C, D, E> VM._internal5(
     owner: LifecycleOwner?,
     prop1: KProperty1<S, A>,
     prop2: KProperty1<S, B>,
@@ -90,7 +90,7 @@ fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C, D, E> VM._internal5(
     }
 
 @InternalMavericksApi
-fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C, D, E, F> VM._internal6(
+fun <VM : MVIViewModel<S>, S : MVIState, A, B, C, D, E, F> VM._internal6(
     owner: LifecycleOwner?,
     prop1: KProperty1<S, A>,
     prop2: KProperty1<S, B>,
@@ -108,7 +108,7 @@ fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C, D, E, F> VM._internal6(
     }
 
 @InternalMavericksApi
-fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C, D, E, F, G> VM._internal7(
+fun <VM : MVIViewModel<S>, S : MVIState, A, B, C, D, E, F, G> VM._internal7(
     owner: LifecycleOwner?,
     prop1: KProperty1<S, A>,
     prop2: KProperty1<S, B>,
@@ -127,7 +127,7 @@ fun <VM : BaseViewModel<S>, S : BaseUIState, A, B, C, D, E, F, G> VM._internal7(
     }
 
 @InternalMavericksApi
-fun <VM : BaseViewModel<S>, S : BaseUIState, T> VM._internalSF(
+fun <VM : MVIViewModel<S>, S : MVIState, T> VM._internalSF(
     owner: LifecycleOwner?,
     asyncProp: KProperty1<S, Async<T>>,
     deliveryMode: DeliveryMode = RedeliverOnStart,

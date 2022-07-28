@@ -83,9 +83,9 @@ internal val Class<*>.isData: Boolean
 /**
  * Checks that a state's value is not changed over its lifetime.
  */
-internal class MutableStateChecker<S : BaseUIState>(val initialState: S) {
+internal class MutableStateChecker<S : MVIState>(val initialState: S) {
 
-    data class StateWrapper<S : BaseUIState>(val state: S) {
+    data class StateWrapper<S : MVIState>(val state: S) {
         private val originalHashCode = hashCode()
 
         fun validate() = require(originalHashCode == hashCode()) {

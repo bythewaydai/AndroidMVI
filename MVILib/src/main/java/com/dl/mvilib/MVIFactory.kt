@@ -3,7 +3,7 @@ package com.dl.mvilib
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-internal class MVIFactory<VM : BaseViewModel<S>, S : BaseUIState>(
+internal class MVIFactory<VM : MVIViewModel<S>, S : MVIState>(
     private val viewModelClass: Class<out VM>,
     private val stateClass: Class<out S>,
     private val viewModelContext: ViewModelContext,
@@ -31,7 +31,7 @@ internal class MVIFactory<VM : BaseViewModel<S>, S : BaseUIState>(
 }
 
 @Suppress("UNCHECKED_CAST")
-private fun <VM : BaseViewModel<S>, S : BaseUIState> createViewModel(
+private fun <VM : MVIViewModel<S>, S : MVIState> createViewModel(
     declaredViewModelClass: Class<out VM>,
     declaredStateClass: Class<out S>,
     viewModelContext: ViewModelContext,
@@ -45,11 +45,11 @@ private fun <VM : BaseViewModel<S>, S : BaseUIState> createViewModel(
 
     val factoryViewModel = viewModelClass.factoryCompanion()?.let { factoryClass ->
         try {
-            factoryClass.getMethod("create", ViewModelContext::class.java, BaseUIState::class.java)
+            factoryClass.getMethod("create", ViewModelContext::class.java, MVIState::class.java)
                 .invoke(factoryClass.instance(), viewModelContext, initialState) as VM?
         } catch (exception: NoSuchMethodException) {
             // Check for JvmStatic method.
-            viewModelClass.getMethod("create", ViewModelContext::class.java, BaseUIState::class.java)
+            viewModelClass.getMethod("create", ViewModelContext::class.java, MVIState::class.java)
                 .invoke(null, viewModelContext, initialState) as VM?
         }
     }
@@ -67,7 +67,7 @@ private fun <VM : BaseViewModel<S>, S : BaseUIState> createViewModel(
 }
 
 @Suppress("UNCHECKED_CAST", "NestedBlockDepth")
-private fun <VM : BaseViewModel<S>, S : BaseUIState> createDefaultViewModel(viewModelClass: Class<VM>, state: S): VM? {
+private fun <VM : MVIViewModel<S>, S : MVIState> createDefaultViewModel(viewModelClass: Class<VM>, state: S): VM? {
     // If we are checking for a default ViewModel, we expect only a single default constructor. Any other case
     // is a misconfiguration and we will throw an appropriate error under further inspection.
     if (viewModelClass.constructors.size == 1) {

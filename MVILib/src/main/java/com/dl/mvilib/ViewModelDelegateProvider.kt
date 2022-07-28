@@ -8,7 +8,7 @@ import kotlin.reflect.KProperty
  * Creates an object that provides a Lazy ViewModel for use in Fragments.
  */
 @PublishedApi
-internal inline fun <T, reified VM : BaseViewModel<S>, reified S : BaseUIState> viewModelDelegateProvider(
+internal inline fun <T, reified VM : MVIViewModel<S>, reified S : MVIState> viewModelDelegateProvider(
     viewModelClass: KClass<VM>,
     crossinline keyFactory: () -> String,
     existingViewModel: Boolean,
@@ -58,7 +58,7 @@ interface ViewModelDelegateFactory {
      * the viewmodel. It knows how to configure the viewmodel, and just needs to be provided with
      * a state factory.
      */
-    fun <S : BaseUIState, T, VM : BaseViewModel<S>> createLazyViewModel(
+    fun <S : MVIState, T, VM : MVIViewModel<S>> createLazyViewModel(
         fragment: T,
         viewModelProperty: KProperty<*>,
         viewModelClass: KClass<VM>,
@@ -80,7 +80,7 @@ interface ViewModelDelegateFactory {
  * only while the Fragment is in the STARTED lifecycle state.
  */
 class DefaultViewModelDelegateFactory : ViewModelDelegateFactory {
-    override fun <S : BaseUIState, T, VM : BaseViewModel<S>> createLazyViewModel(
+    override fun <S : MVIState, T, VM : MVIViewModel<S>> createLazyViewModel(
         fragment: T,
         viewModelProperty: KProperty<*>,
         viewModelClass: KClass<VM>,

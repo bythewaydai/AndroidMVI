@@ -4,7 +4,7 @@ import android.os.Build
 import java.lang.reflect.Modifier
 
 @InternalMavericksApi
-interface MVIStateFactory<VM : BaseViewModel<S>, S : BaseUIState> {
+interface MVIStateFactory<VM : MVIViewModel<S>, S : MVIState> {
 
     fun createInitialState(
         viewModelClass: Class<out VM>,
@@ -15,7 +15,7 @@ interface MVIStateFactory<VM : BaseViewModel<S>, S : BaseUIState> {
 }
 
 @InternalMavericksApi
-class RealMavericksStateFactory<VM : BaseViewModel<S>, S : BaseUIState> : MVIStateFactory<VM, S> {
+class RealMavericksStateFactory<VM : MVIViewModel<S>, S : MVIState> : MVIStateFactory<VM, S> {
 
     override fun createInitialState(
         viewModelClass: Class<out VM>,
@@ -37,7 +37,7 @@ class RealMavericksStateFactory<VM : BaseViewModel<S>, S : BaseUIState> : MVISta
  * If no such function exists, null is returned.
  */
 @Suppress("UNCHECKED_CAST")
-internal fun <VM : BaseViewModel<S>, S : BaseUIState> createStateFromCompanionFactory(
+internal fun <VM : MVIViewModel<S>, S : MVIState> createStateFromCompanionFactory(
     viewModelClass: Class<out VM>,
     viewModelContext: ViewModelContext
 ): S? {
@@ -57,7 +57,7 @@ internal fun <VM : BaseViewModel<S>, S : BaseUIState> createStateFromCompanionFa
  * Searches [stateClass] for a single argument constructor matching the type of [args]. If [args] is null, then
  * no arg constructor is invoked.
  */
-internal fun <VM : BaseViewModel<S>, S : BaseUIState> createStateFromConstructor(
+internal fun <VM : MVIViewModel<S>, S : MVIState> createStateFromConstructor(
     viewModelClass: Class<out VM>,
     stateClass: Class<out S>,
     args: Any?

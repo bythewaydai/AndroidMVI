@@ -36,12 +36,12 @@ abstract class MavericksViewModelConfig<S : Any>(
      * is "enabled", even if the execute was performed when the state store was "disabled" and we
      * didn't intend to allow operations to change the state.
      */
-    abstract fun <S : BaseUIState> onExecute(
-        viewModel: BaseViewModel<S>
+    abstract fun <S : MVIState> onExecute(
+        viewModel: MVIViewModel<S>
     ): BlockExecutions
 
     /**
-     * Defines whether a [BaseViewModel.execute] invocation should not be run.
+     * Defines whether a [MVIViewModel.execute] invocation should not be run.
      */
     enum class BlockExecutions {
         /** Run the execute block normally. */

@@ -33,7 +33,7 @@ import kotlin.reflect.KProperty1
  *
  * Other classes can observe the state via [stateFlow].
  */
-abstract class BaseViewModel<S : BaseUIState>(
+abstract class MVIViewModel<S : MVIState>(
     initialState: S
 ) {
 
@@ -132,14 +132,14 @@ abstract class BaseViewModel<S : BaseUIState>(
                         }
                     if (changedProp != null) {
                         throw IllegalArgumentException(
-                            "Impure reducer set on ${this@BaseViewModel::class.java.simpleName}! " +
+                            "Impure reducer set on ${this@MVIViewModel::class.java.simpleName}! " +
                                 "${changedProp.name} changed from ${changedProp.get(firstState)} " +
                                 "to ${changedProp.get(secondState)}. " +
                                 "Ensure that your state properties properly implement hashCode."
                         )
                     } else {
                         throw IllegalArgumentException(
-                            "Impure reducer set on ${this@BaseViewModel::class.java.simpleName}! Differing states were provided by the same reducer." +
+                            "Impure reducer set on ${this@MVIViewModel::class.java.simpleName}! Differing states were provided by the same reducer." +
                                 "Ensure that your state properties properly implement hashCode. First state: $firstState -> Second state: $secondState"
                         )
                     }
@@ -204,7 +204,7 @@ abstract class BaseViewModel<S : BaseUIState>(
         retainValue: KProperty1<S, Async<T>>? = null,
         reducer: S.(Async<T>) -> S
     ): Job {
-        val blockExecutions = config.onExecute(this@BaseViewModel)
+        val blockExecutions = config.onExecute(this@MVIViewModel)
         if (blockExecutions != MavericksViewModelConfig.BlockExecutions.No) {
             if (blockExecutions == MavericksViewModelConfig.BlockExecutions.WithLoading) {
                 setState { reducer(Loading()) }
@@ -244,7 +244,7 @@ abstract class BaseViewModel<S : BaseUIState>(
         retainValue: KProperty1<S, Async<T>>? = null,
         reducer: S.(Async<T>) -> S
     ): Job {
-        val blockExecutions = config.onExecute(this@BaseViewModel)
+        val blockExecutions = config.onExecute(this@MVIViewModel)
         if (blockExecutions != MavericksViewModelConfig.BlockExecutions.No) {
             if (blockExecutions == MavericksViewModelConfig.BlockExecutions.WithLoading) {
                 setState { reducer(Loading(value = retainValue?.get(this)?.invoke())) }
@@ -272,7 +272,7 @@ abstract class BaseViewModel<S : BaseUIState>(
         dispatcher: CoroutineDispatcher? = null,
         reducer: S.(T) -> S
     ): Job {
-        val blockExecutions = config.onExecute(this@BaseViewModel)
+        val blockExecutions = config.onExecute(this@MVIViewModel)
         if (blockExecutions != MavericksViewModelConfig.BlockExecutions.No) {
             // Simulate infinite work
             return viewModelScope.launch { delay(Long.MAX_VALUE) }
@@ -425,7 +425,7 @@ abstract class BaseViewModel<S : BaseUIState>(
         }
     }
 
-    private fun <S : BaseUIState> assertSubscribeToDifferentViewModel(viewModel: BaseViewModel<S>) {
+    private fun <S : MVIState> assertSubscribeToDifferentViewModel(viewModel: MVIViewModel<S>) {
         require(this != viewModel) {
             "This method is for subscribing to other view models. Please pass a different instance as the argument."
         }

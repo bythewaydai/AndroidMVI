@@ -15,6 +15,7 @@ object MVI {
      * but a custom factory may be provided to assist with testing, or if you want control
      * over how and when ViewModels and their State are created.
      */
+    // 给viewModel提供一个工厂，用来创建viewModel，且是懒加载，根据生命周期来
     var viewModelDelegateFactory: ViewModelDelegateFactory = DefaultViewModelDelegateFactory()
 
     /**
@@ -27,6 +28,7 @@ object MVI {
      * allows custom state stores or execution behavior for the ViewModel, which can be helpful
      * for testing.
      */
+    // viewmodel 的配置工厂
     var viewModelConfigFactory: MVIViewModelConfigFactory
         set(value) {
             _viewModelConfigFactory = value

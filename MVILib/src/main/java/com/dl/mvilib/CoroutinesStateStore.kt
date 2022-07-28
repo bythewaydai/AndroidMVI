@@ -15,7 +15,7 @@ import java.util.concurrent.Executors
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
-class CoroutinesStateStore<S : BaseUIState>(
+class CoroutinesStateStore<S : MVIState>(
     initialState: S,
     private val scope: CoroutineScope,
     private val contextOverride: CoroutineContext = EmptyCoroutineContext

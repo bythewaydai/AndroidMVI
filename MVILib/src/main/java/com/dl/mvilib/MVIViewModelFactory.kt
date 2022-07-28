@@ -11,7 +11,7 @@ import androidx.savedstate.SavedStateRegistry
  * Implement this on your ViewModel's companion object for hooks into state creation and ViewModel creation. For example, if you need access
  * to the fragment or activity owner for dependency injection.
  */
-interface MavericksViewModelFactory<VM : BaseViewModel<S>, S : BaseUIState> {
+interface MavericksViewModelFactory<VM : MVIViewModel<S>, S : MVIState> {
 
     /**
      * @param viewModelContext [ViewModelContext] which contains the ViewModel owner and arguments.

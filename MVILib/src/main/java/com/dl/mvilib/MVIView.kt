@@ -112,7 +112,7 @@ interface MVIView : LifecycleOwner {
      * @param action supports cooperative cancellation. The previous action will be cancelled if it is not completed before
      * the next one is emitted.
      */
-    fun <S : BaseUIState> BaseViewModel<S>.onEach(
+    fun <S : MVIState> MVIViewModel<S>.onEach(
         deliveryMode: DeliveryMode = RedeliverOnStart,
         action: suspend (S) -> Unit
     ) =
@@ -133,7 +133,7 @@ interface MVIView : LifecycleOwner {
      * @param action supports cooperative cancellation. The previous action will be cancelled if it is not completed before
      * the next one is emitted.
      */
-    fun <S : BaseUIState, A> BaseViewModel<S>.onEach(
+    fun <S : MVIState, A> MVIViewModel<S>.onEach(
         prop1: KProperty1<S, A>,
         deliveryMode: DeliveryMode = RedeliverOnStart,
         action: suspend (A) -> Unit
@@ -153,7 +153,7 @@ interface MVIView : LifecycleOwner {
      * @param action supports cooperative cancellation. The previous action will be cancelled if it is not completed before
      * the next one is emitted..
      */
-    fun <S : BaseUIState, A, B> BaseViewModel<S>.onEach(
+    fun <S : MVIState, A, B> MVIViewModel<S>.onEach(
         prop1: KProperty1<S, A>,
         prop2: KProperty1<S, B>,
         deliveryMode: DeliveryMode = RedeliverOnStart,
@@ -174,7 +174,7 @@ interface MVIView : LifecycleOwner {
      * @param action supports cooperative cancellation. The previous action will be cancelled if it is not completed before
      * the next one is emitted.
      */
-    fun <S : BaseUIState, A, B, C> BaseViewModel<S>.onEach(
+    fun <S : MVIState, A, B, C> MVIViewModel<S>.onEach(
         prop1: KProperty1<S, A>,
         prop2: KProperty1<S, B>,
         prop3: KProperty1<S, C>,
@@ -196,7 +196,7 @@ interface MVIView : LifecycleOwner {
      * @param action supports cooperative cancellation. The previous action will be cancelled if it is not completed before
      * the next one is emitted.
      */
-    fun <S : BaseUIState, A, B, C, D> BaseViewModel<S>.onEach(
+    fun <S : MVIState, A, B, C, D> MVIViewModel<S>.onEach(
         prop1: KProperty1<S, A>,
         prop2: KProperty1<S, B>,
         prop3: KProperty1<S, C>,
@@ -219,7 +219,7 @@ interface MVIView : LifecycleOwner {
      * @param action supports cooperative cancellation. The previous action will be cancelled if it is not completed before
      * the next one is emitted.
      */
-    fun <S : BaseUIState, A, B, C, D, E> BaseViewModel<S>.onEach(
+    fun <S : MVIState, A, B, C, D, E> MVIViewModel<S>.onEach(
         prop1: KProperty1<S, A>,
         prop2: KProperty1<S, B>,
         prop3: KProperty1<S, C>,
@@ -243,7 +243,7 @@ interface MVIView : LifecycleOwner {
      * @param action supports cooperative cancellation. The previous action will be cancelled if it is not completed before
      * the next one is emitted.
      */
-    fun <S : BaseUIState, A, B, C, D, E, F> BaseViewModel<S>.onEach(
+    fun <S : MVIState, A, B, C, D, E, F> MVIViewModel<S>.onEach(
         prop1: KProperty1<S, A>,
         prop2: KProperty1<S, B>,
         prop3: KProperty1<S, C>,
@@ -268,7 +268,7 @@ interface MVIView : LifecycleOwner {
      * @param action supports cooperative cancellation. The previous action will be cancelled if it is not completed before
      * the next one is emitted.
      */
-    fun <S : BaseUIState, A, B, C, D, E, F, G> BaseViewModel<S>.onEach(
+    fun <S : MVIState, A, B, C, D, E, F, G> MVIViewModel<S>.onEach(
         prop1: KProperty1<S, A>,
         prop2: KProperty1<S, B>,
         prop3: KProperty1<S, C>,
@@ -297,7 +297,7 @@ interface MVIView : LifecycleOwner {
      * @param onSuccess supports cooperative cancellation. The previous action will be cancelled if it as not completed before
      * the next one is emitted.
      */
-    fun <S : BaseUIState, T> BaseViewModel<S>.onAsync(
+    fun <S : MVIState, T> MVIViewModel<S>.onAsync(
         asyncProp: KProperty1<S, Async<T>>,
         deliveryMode: DeliveryMode = RedeliverOnStart,
         onFail: (suspend (Throwable) -> Unit)? = null,
