@@ -6,6 +6,7 @@ import androidx.startup.Initializer
 class MVIInitializer  : Initializer<MVI> {
     override fun create(context: Context): MVI {
         return MVI.initialize(context)
+        //test git
     }
     override fun dependencies(): List<Class<out Initializer<*>>> {
         // No dependencies on other libraries.
